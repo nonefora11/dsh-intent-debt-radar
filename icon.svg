@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Intent Debt Radar">
+  <rect x="4" y="4" width="56" height="56" rx="14" fill="#0F172A"/>
+  <g fill="none" stroke="#F5C451" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M32 12v12"/>
+    <path d="M20 26h24"/>
+    <path d="M25 26v13a7 7 0 0 0 14 0V26"/>
+  </g>
+  <circle cx="32" cy="47" r="4" fill="#E5564B"/>
+</svg>

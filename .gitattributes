@@ -1,0 +1,5 @@
+# Keep the working tree byte-identical to what npm publishes, on every platform.
+* text=auto eol=lf
+
+*.png binary
+*.svg text eol=lf

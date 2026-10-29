@@ -1,0 +1,12 @@
+# dsh-intent-debt-radar 的 bundle 层：把「意图债务雷达」挂进 profile。
+#
+# 一行 insert 同时承载两个半边：
+#   host   半边：监听 session/event，抽「以后再说」这类语义承诺，落到本地账本，
+#                暴露 /intent-debt/* 路由与 intent_debt 工具；
+#   client 半边：侧栏「意图债务」入口 + 债务账本页 + 启动摘要弹窗，
+#                由 package.json 的 `dsh.client` + exports["./client"] 编入页面。
+#
+# name 必须等于包名：Cordis 按 name 解析包，写错会让整行起不来。
+- insert:
+    - id: intent-debt-radar
+      name: dsh-intent-debt-radar
