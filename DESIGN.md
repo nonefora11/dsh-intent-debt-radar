@@ -7,6 +7,10 @@ DSH 插件。追踪的不是任务，而是**对话里未兑现的语义承诺**
 
 关联文档：[RESEARCH.md](./RESEARCH.md)（调研：别人想要什么、为什么现有方案错位）
 
+> **这是一份设计期快照（2026-10-28 定稿），不再逐条跟随实现。**
+> 文中三处方案在开发中被否决，正文保留原样以便追溯，偏离点见文末 §附录：与实现的差异。
+> 想知道插件实际怎么工作，看 [README.md](./README.md)。
+
 ---
 
 ## 0. 已锁定的决策（v0.2）
@@ -29,7 +33,7 @@ DSH 插件。追踪的不是任务，而是**对话里未兑现的语义承诺**
 
 ```js
 export const name = 'dsh-intent-debt-radar'
-export const inject = ['tools', 'storageDomain']   // 可选服务用 ctx.inject([...])
+export const inject = ['tools', 'storageDomain']   // 草案写法；实现只声明 ['tools']
 export function apply(ctx, config) { /* ... */ }
 ```
 
@@ -68,7 +72,11 @@ ctx.sessionQuery.listSessions(...) / filterSessions([...]) / readSession(...)
 
 直接读 `.jsonl.zstd`，不用自己解压。装完扫最近 N 天 → **冷启动立刻有内容**。
 
-### 1.4 跨会话持久化
+### 1.4 跨会话持久化（草案方案，实现未采用）
+
+> ⚠️ 实现改用自建 JSON 账本 `$DSH_HOME/intent-debt-radar/ledger.json`：
+> `storageDomain` 要求 `schemastery` + `zod` 两个 peer 依赖，会给市场安装加摩擦。
+> 下面保留的是当时的方案，见 §附录：与实现的差异。
 
 ```js
 import { defineDomain } from '@deepseek-ai/dsh-storage-domain'
@@ -345,3 +353,17 @@ dsh-intent-debt-radar/
 - **billion-context**：管上下文压缩；账本走独立 domain，**不进上下文**。
 - **dsh-engram**：记**知识**（事实、偏好）；我们记**义务**（欠着的事）。两套记忆子系统。
 - **dsh-loop-continue**：管 agent 单轮行为断点；我们管承诺的**存续与清偿**。
+
+---
+
+## 附录：与实现的差异（2026-10-30 核对）
+
+以下逐条对着代码核实过，正文对应小节保持原样。
+
+| 草案 | 实现 | 原因 |
+|---|---|---|
+| `inject = ['tools', 'storageDomain']` | `inject = ['tools']`（`index.js:29`） | 不用 storageDomain，见下一行 |
+| 账本走 `storageDomain`，落 `~/.dsh/storages/` | 自建 JSON，落 `$DSH_HOME/intent-debt-radar/ledger.json` | 零 peer 依赖，安装无摩擦 |
+| 抽取固定走「A：插件内调 `ctx.llm`」 | 默认规则模式（纯正则，零网络），API 模式可选、需手动切 | 成本可控，离线可用 |
+| 面板是侧栏页面 | 主视图页（`main`）+ 侧栏一行入口 + `shell.overlay` 启动摘要 | 弹窗与常驻页职责不同 |
+| Windows 通知直连系统 toast | 浏览器 `Notification` API，由 30 秒轮询 `/intent-debt/due` 泵出 | 市场安全扫描会拦 shell 下载执行模式 |

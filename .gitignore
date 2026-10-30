@@ -6,5 +6,6 @@ Thumbs.db
 coverage/
 *.corrupt-*
 
-# 9 MB marketplace scrape used for the competitive research; keep it local.
-research/plugins.json
+# 9 MB marketplace scrape used for the competitive research; keep it local and
+# out of the clone entirely — nothing in the plugin reads it at runtime.
+research/
