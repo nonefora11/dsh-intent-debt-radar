@@ -1,5 +1,10 @@
 # 意图债务雷达 · Intent Debt Radar
 
+[![test](https://github.com/nonefora11/dsh-intent-debt-radar/actions/workflows/test.yml/badge.svg)](https://github.com/nonefora11/dsh-intent-debt-radar/actions/workflows/test.yml)
+[![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![dsh](https://img.shields.io/badge/dsh-%3E%3D0.2.0--rc.2%20%3C0.3.0-5b8def.svg)](package.json)
+[![node](https://img.shields.io/badge/node-%3E%3D22-339933.svg)](package.json)
+
 **简体中文** · [English](README.en.md)
 
 **你顺口放弃的那句话，不会因为对话滚过去了就不存在。**
@@ -154,10 +159,22 @@ npm install dsh-intent-debt-radar
 外发的只有规则拿不准的那一个子句（上下文截到 60 字内），走当前会话自己的模型路由：不额外
 要 API key，不连第三方端点，结果带缓存，同一句话不会付两次钱。
 
-## 兼容性
+## 兼容性与实测环境
 
 - DSH `>=0.2.0-rc.2 <0.3.0`，Node `>=22`，Web 客户端。
 - 一个可选 peer 依赖 `@deepseek-ai/dsh-llm`，只在 `api` 模式下使用；`rules` 模式完全不需要它。
+
+| 项目 | 实测值 |
+| --- | --- |
+| DSH 运行时 | `0.2.1-rc.5`（本机 `@deepseek-ai/dsh-base` 的版本号） |
+| Node / 系统 | `v24.16.0` · Windows |
+| 安装方式 | profile 内 `file:` 依赖，并写进该 profile `package.json` 的 `dsh.profile.bundles` |
+| 自动化测试 | 107 项全绿（`npm test`）；CI 另在 Node 22/24 × Ubuntu/Windows 上跑 |
+| 界面 | 侧边栏入口、启动摘要弹窗、账本面板：本机人工走查 |
+
+只在这一个 DSH 版本上真机跑过，其他版本没有验证记录。撞到问题请开 issue，带上 `dsh` 版本、
+`mode` 配置、以及面板顶部那行 `已观察 N 条消息 · 抓到 M 次迹象`——这三样基本能定位是没加载、
+没收到事件、还是没命中。
 
 ## 开发
 

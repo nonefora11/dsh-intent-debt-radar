@@ -1,6 +1,6 @@
 {
   "name": "dsh-intent-debt-radar",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "DSH plugin: track unfulfilled promises in a conversation — the things you said you'd do later — as interest-bearing debt, across sessions.",
   "keywords": [
     "dsh",

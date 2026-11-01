@@ -4,6 +4,18 @@ Notable changes to `dsh-intent-debt-radar`. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versions follow
 [SemVer](https://semver.org/).
 
+## [0.2.4] — 2026-11-01
+
+### Added
+
+- **CI.** `.github/workflows/test.yml` runs `npm test` and `npm pack --dry-run` on
+  Node 22 and 24, on both Ubuntu and Windows, for every push and pull request. No
+  install step on purpose: the suite has to be green on a bare checkout, and that is
+  also the check that `rules` mode really needs nothing from `@deepseek-ai/dsh-llm`.
+- **A verified-environment table** in both READMEs, and status badges at the top.
+  Only DSH `0.2.1-rc.5` on Windows has actually been run, and the table says so
+  instead of implying a support matrix that was never exercised.
+
 ## [0.2.3] — 2026-10-29
 
 ### Added

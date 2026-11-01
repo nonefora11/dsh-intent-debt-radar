@@ -1,5 +1,10 @@
 # Intent Debt Radar
 
+[![test](https://github.com/nonefora11/dsh-intent-debt-radar/actions/workflows/test.yml/badge.svg)](https://github.com/nonefora11/dsh-intent-debt-radar/actions/workflows/test.yml)
+[![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![dsh](https://img.shields.io/badge/dsh-%3E%3D0.2.0--rc.2%20%3C0.3.0-5b8def.svg)](package.json)
+[![node](https://img.shields.io/badge/node-%3E%3D22-339933.svg)](package.json)
+
 [简体中文](README.md) · **English**
 
 **A promise you quietly dropped does not stop existing just because the conversation scrolled.**
@@ -173,10 +178,23 @@ of any kind. In `api` mode the only thing sent is the clause the rules could not
 no API key of its own, no third-party endpoint, and the answer is cached so the same
 sentence is never paid for twice.
 
-## Compatibility
+## Compatibility and what was actually tested
 
 - DSH `>=0.2.0-rc.2 <0.3.0`, Node `>=22`, web client.
 - One optional peer, `@deepseek-ai/dsh-llm`, used only by `api` mode; `rules` mode runs without it.
+
+| Item | Measured |
+| --- | --- |
+| DSH runtime | `0.2.1-rc.5` (the version reported by `@deepseek-ai/dsh-base`) |
+| Node / OS | `v24.16.0` · Windows |
+| Install | `file:` dependency inside a profile, plus an entry in that profile's `dsh.profile.bundles` |
+| Tests | 107 passing (`npm test`); CI additionally runs Node 22/24 × Ubuntu/Windows |
+| UI | sidebar entry, startup summary, ledger panel — walked through by hand |
+
+Only that one DSH version has been run for real; nothing else is verified. If something breaks, open an
+issue with your `dsh` version, the `mode` setting, and the counter line at the top of the panel
+(`observed N messages · caught M signals`) — those three distinguish "not loaded" from "no events" from
+"nothing matched".
 
 ## Development
 
