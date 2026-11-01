@@ -15,6 +15,9 @@ Notable changes to `dsh-intent-debt-radar`. The format follows
 - **A verified-environment table** in both READMEs, and status badges at the top.
   Only DSH `0.2.1-rc.5` on Windows has actually been run, and the table says so
   instead of implying a support matrix that was never exercised.
+- **Text layout sketches** of the ledger page and the launch summary in both READMEs,
+  drawn with the exact UI labels. No screenshots: a picture of a panel rots silently
+  the first time a button gets renamed, while a text sketch can be diffed in review.
 
 ## [0.2.3] — 2026-10-29
 

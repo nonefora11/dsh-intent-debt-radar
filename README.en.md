@@ -91,14 +91,49 @@ Or install it from a plugin market if your DSH build has one.
 
 ## Where to look
 
-- **Once per DSH launch** the summary lists what is owed, in the order that hurts:
-  most avoided first. Closing it or restarting counts as seen; it does not nag twice
-  in one process.
-- **Top of the panel** carries one quiet line — `N messages seen · M tells caught` —
-  next to a status dot. With nothing observed it says so outright instead of looking
-  like a calm, empty ledger.
+The ledger page, roughly (`P0`/`P1` are tiers, the number is today's score):
+
+```
+Intent Debt                                 live 3 · settled 12
+What a conversation shelved, a question nobody answered, a decision not taken.
+
+1284 messages seen · 37 tells caught     ●      extractor  [rules] [model]
+                                         today 2/60 calls · 1874 tokens · cache 3 · skipped 9
+
+  P0 score 15   deferred · you said it · open 2 days · said 3 times
+  "let's park the log for now, I'm busy"
+  [Open chat] [Settle] [Snooze a day] [Remind] [To a todo]
+
+  P1 score 9    unanswered · I said it · open 1 day
+  "shall I finish the rest?"
+  [Open chat] [Settle] [Snooze a day] [Remind] [To a todo]
+```
+
+And once per launch, a summary with only the heaviest few:
+
+```
+┌ Before you start: 3 intent debts ──────────────────────────────┐
+│ Promises from earlier conversations that were never kept.      │
+│ They live in interest, not in your memory.                     │
+│   P0  "let's park the log for now, I'm busy"        open 2 days│
+│   P1  "shall I finish the rest?"                    open 1 day │
+│   P2  "leave the login page for later"              open 1 day │
+│                                  [Open the sidebar] [Got it]  │
+└────────────────────────────────────────────────────────────────┘
+```
+
+Details:
+
+- **The summary** appears once per DSH launch, most avoided first. Closing it or
+  restarting counts as seen; it does not nag twice in one process.
+- **The counter line** at the top is live — `N messages seen · M tells caught` — next
+  to a status dot. With nothing observed it says so outright instead of looking like a
+  calm, empty ledger.
 - **The extractor** is two buttons, the active one accented, and flipping it reports
-  back on the spot.
+  back on the spot; switch to `model` and the line on the right immediately starts
+  saying `today 2/60 calls · 1874 tokens`, so the cost is never a matter of trust.
+- **The quote itself is clickable too**, same as `Open chat`: back to the conversation
+  where the promise was made.
 
 ## Two extraction modes
 
