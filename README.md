@@ -56,12 +56,17 @@ score = base + 3·min(hits, 4) + min(ageDays, 14) + (有提醒 ? 3 : 0) − (被
 # 在你的 DSH profile 目录里
 cd ~/.dsh/profiles/desktop
 
-# 还没发到 npm 时，直接从仓库装：
+# 方式一：从 release 附件装（不需要 git，也不依赖 npm 注册表）
+npm install https://github.com/nonefora11/dsh-intent-debt-radar/releases/download/v0.2.4/dsh-intent-debt-radar-0.2.4.tgz
+
+# 方式二：直接指向仓库（需要这台机器能 git clone github.com）
 npm install github:nonefora11/dsh-intent-debt-radar
 
-# 已发布后：
+# 方式三：发布到 npm 之后
 npm install dsh-intent-debt-radar
 ```
+
+方式一那种 `.tgz` 在 [`v0.2.4` release](https://github.com/nonefora11/dsh-intent-debt-radar/releases/tag/v0.2.4) 里，只含插件本身（16 个文件、约 60 KB），不跑安装脚本。
 
 然后把这个包加进该 profile `package.json` 的 `dsh.profile.bundles`：
 

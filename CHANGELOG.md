@@ -18,6 +18,11 @@ Notable changes to `dsh-intent-debt-radar`. The format follows
 - **Text layout sketches** of the ledger page and the launch summary in both READMEs,
   drawn with the exact UI labels. No screenshots: a picture of a panel rots silently
   the first time a button gets renamed, while a text sketch can be diffed in review.
+- **A packaged tarball on the release.** `dsh-intent-debt-radar-0.2.4.tgz` (16 files,
+  ~60 KB, no install scripts) is attached to the `v0.2.4` release, and both READMEs now
+  lead with `npm install <that url>`: installs stop depending on git being able to
+  reach github.com, and the release page gets the only download counter GitHub
+  publishes.
 
 ## [0.2.3] — 2026-10-29
 

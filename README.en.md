@@ -64,12 +64,18 @@ Tiers: **P0 ≥ 12**, **P1 ≥ 6**, everything else **P2**.
 # inside your DSH profile directory
 cd ~/.dsh/profiles/desktop
 
-# before it is on npm, install straight from the repository:
+# before it is on npm, install the packaged tarball (no git, no npm registry):
+npm install https://github.com/nonefora11/dsh-intent-debt-radar/releases/download/v0.2.4/dsh-intent-debt-radar-0.2.4.tgz
+
+# or point straight at the repository (needs this machine to reach github.com):
 npm install github:nonefora11/dsh-intent-debt-radar
 
 # once published:
 npm install dsh-intent-debt-radar
 ```
+
+The `.tgz` lives under the [`v0.2.4` release](https://github.com/nonefora11/dsh-intent-debt-radar/releases/tag/v0.2.4);
+it holds the plugin and nothing else (16 files, ~60 KB, no install scripts).
 
 Then add it to `dsh.profile.bundles` in that profile's `package.json`:
 
